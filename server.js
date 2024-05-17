@@ -53,8 +53,3 @@ app.on('pronto', () => {//quando a condição de conexão com o banco for verdad
         console.log('Servidor rodando!');
     });
 });
-
-// PADRÃO MVC (Model, View, Controller)
-// Model gerencia os dados
-// View renderiza as telas
-// Controller decide qual Model e View utilizar 

@@ -4,7 +4,7 @@ exports.myMiddleware = (_req, res, next) => {
 };
 
 exports.checkCsrfError = (err, _req, res, next) => {
-    if(err && err.code === 'EBADCSRFTOKEN'){
+    if(err){
         return res.render('erro');
     }
     next();
