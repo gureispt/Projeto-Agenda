@@ -16,7 +16,7 @@ const routes = require('./routes'); //rotas da aplicação
 const path = require('path'); //caminhos, resolver e etc
 const helmet = require('helmet'); //biblioteca para a segurança web
 const csrf = require('csurf'); //um token para formulários
-const {myMiddleware, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware'); //funções executadas na rota
+const {myMiddleware, checkCsrfError, csrfMiddleware, MiddlewareGlobal } = require('./src/middlewares/middleware'); //funções executadas na rota
 
 app.use(helmet());//usando o helmet
 app.use(express.urlencoded({extended: true}));//permitindo postar formulários para dentro da aplicação
@@ -42,7 +42,7 @@ app.set('views', path.resolve(__dirname, 'src', 'views'));//configuração da vi
 app.set('view engine', 'ejs');//engine para renderizar o html
 
 app.use(csrf());//usando o csrf
-app.use(myMiddleware);//usando os middlewares
+app.use(MiddlewareGlobal);//usando os middlewares
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
 app.use(routes);//usando as rotas
