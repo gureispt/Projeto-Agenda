@@ -64,7 +64,7 @@ class Login {
 
     cleanUp(){
         for(const key in this.body){//limpa os campos
-            if(typeof this.body[key] !== 'string'){
+            if(typeof this.body[key] !== 'String'){
                 this.body[key] = '';
             }
         }
