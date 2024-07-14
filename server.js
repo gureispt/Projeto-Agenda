@@ -16,7 +16,7 @@ const routes = require('./routes'); //rotas da aplicação
 const path = require('path'); //caminhos, resolver e etc
 const helmet = require('helmet'); //biblioteca para a segurança web
 const csrf = require('csurf'); //um token para formulários
-const {myMiddleware, checkCsrfError, csrfMiddleware, MiddlewareGlobal } = require('./src/middlewares/middleware'); //funções executadas na rota
+const { checkCsrfError, csrfMiddleware, MiddlewareGlobal } = require('./src/middlewares/middleware'); //funções executadas na rota
 
 app.use(helmet());//usando o helmet
 app.use(express.urlencoded({extended: true}));//permitindo postar formulários para dentro da aplicação

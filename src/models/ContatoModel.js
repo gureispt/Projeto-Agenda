@@ -17,6 +17,23 @@ function Contato(body) {
   this.contato = null;
 }
 
+Contato.searchId = async function(id){
+  if(typeof id !== 'String') return;
+  const contato = await ContatoModel.findById(id);
+  return contato;
+}
+
+Contato.searchContatos = async function(){
+  const contatos = await ContatoModel.find().sort({ criadoEm: -1 });
+  return contatos;
+}
+
+Contato.delete = async function(id){
+  if(typeof id !== 'String') return;
+  const contato = await ContatoModel.findByIdAndDelete(id);
+  return contato;
+}
+
 Contato.prototype.register = async function() {
   this.valida();
   if(this.errors.length > 0) return;
@@ -35,7 +52,7 @@ Contato.prototype.valida = function() {
 
 Contato.prototype.cleanUp = function() {
   for(const key in this.body) {
-    if(typeof this.body[key] !== 'string') {
+    if(typeof this.body[key] !== 'String') {
       this.body[key] = '';
     }
   }
@@ -47,5 +64,12 @@ Contato.prototype.cleanUp = function() {
     telefone: this.body.telefone,
   };
 };
+
+Contato.prototype.editContato = async function(id){
+  if(typeof id !== 'String') return;
+  this.valida();
+  if(this.errors.length > 0) return;
+  this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
+}
 
 module.exports = Contato;
