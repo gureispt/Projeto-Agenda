@@ -13,11 +13,11 @@
 
       <div class="row">
         
-        <div class="col-lg">
+        <div class="col-lg my-5">
           <h4>Cadastre-se</h4>
           <p>Preencha todos os campos para criar sua conta</p>
 
-          <form action="/login/register" method="post">
+          <form class="form-cadastro" action="/login/register" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
             <div class="mb-3">
@@ -33,11 +33,11 @@
 
         </div>
 
-        <div class="col-lg">
+        <div class="col-lg my-5">
           <h4>Faça login</h4>
           <p>Se já possui conta, faça login abaixo:</p>
 
-          <form action="/login/access" method="post">
+          <form class="form-login" action="/login/access" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             
             <div class="mb-3">

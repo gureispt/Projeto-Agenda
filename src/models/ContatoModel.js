@@ -62,14 +62,13 @@ Contato.searchId = async function(id) {
 };
 
 Contato.searchContatos = async function() {
-  const contatos = await ContatoModel.find()
-    .sort({ criadoEm: -1 });
+  const contatos = await ContatoModel.find().sort({ criadoEm: -1 });
   return contatos;
 };
 
 Contato.delete = async function(id) {
   if(typeof id !== 'String') return;
-  const contato = await ContatoModel.findOneAndDelete({_id: id});
+  const contato = await ContatoModel.findByIdAndDelete(id);
   return contato;
 };
 

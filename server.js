@@ -19,6 +19,7 @@ const csrf = require('csurf'); //um token para formulários
 const { checkCsrfError, csrfMiddleware, MiddlewareGlobal } = require('./src/middlewares/middleware'); //funções executadas na rota
 
 app.use(helmet());//usando o helmet
+app.use(helmet.referrerPolicy({policy: ["origin", "unsafe-url"]}));
 app.use(express.urlencoded({extended: true}));//permitindo postar formulários para dentro da aplicação
 app.use(express.json());//postar arquivos tipo json
 app.use(express.static(path.resolve(__dirname, 'public')));//permite acesso a arquivos estáticos
