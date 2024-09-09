@@ -2,12 +2,20 @@ require('dotenv').config(); //variáveis de ambiente configuradas no arquivo .en
 
 const express = require('express'); //importando express
 const app = express(); //iniciando express
-const mongoose = require('mongoose'); //importanto o mongoose
+const MongoStore = require('connect-mongo'); //importanto o mongoose
 
-mongoose.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(() => {
-    app.emit('pronto')
-}).catch( error => console.error(error)); //conectando o mongoose a base de dados
+
+app.use(session({
+    store: MongoStore.create({
+        mongoUrl: process.env.CONNECTIONSTRING, // Usando a mesma string de conexão do mongoose
+        mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true }
+    }).then(() => {
+        app.emit('pronto')
+    }).catch( error => console.error(error))
+}));
+
+// mongoose.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifiedTopology: true})
+ //conectando o mongoose a base de dados
 
 const session = require('express-session'); //importando a session, salva os cookies 
 const MongoStore = require('connect-mongo'); //salvar as sessões no BD ao invés do padrão que é na memória
